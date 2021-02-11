@@ -9,9 +9,6 @@ const args = process.argv.slice(2);
 
 const website = args[0];
 const dir = args[1];
-
-
-
 request(website, (error, response, body) => {
   if (error) throw error;
   fs.access(dir,fs.constants.F_OK, (err) => {
@@ -26,7 +23,7 @@ request(website, (error, response, body) => {
           fs.writeFile(dir, body, (err) => {
             if (err) throw err;
             console.log(`Downloaded and saved ${response.headers['content-length']} bytes to ${dir}`);
-            });
+          });
         } else {
           console.log('Try a different directory then');
         }
@@ -36,4 +33,3 @@ request(website, (error, response, body) => {
   });
   rl.close();
 });
-    // 
